@@ -1,13 +1,34 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import { StyleSheet, Text, View } from 'react-native'
+import { createStackNavigator, createAppContainer } from 'react-navigation'
+import HomeScreen from "./screens/HomeScreen"
+import HomeListScreen from "./screens/HomeListScreen"
+import AboutScreen from "./screens/AboutScreen"
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Runs on Simulator too!</Text>
-    </View>
-  );
-}
+const AppNavigator = createStackNavigator({
+  Home: {
+    screen: HomeScreen
+  },
+  About: {
+    screen: AboutScreen
+  },
+  HomeList: {
+    screen: HomeListScreen
+  }
+}, {
+  initialRouteName: "Home",
+  navigationOptions: {
+    headerStyle: {
+      backgroundColor: '#48BBEC'
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+      fontWeight: 'bold'
+    }
+  }
+})
+
+const App = createAppContainer(AppNavigator)
 
 const styles = StyleSheet.create({
   container: {
@@ -17,3 +38,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App
